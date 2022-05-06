@@ -1,33 +1,50 @@
 <ion-toolbar color="tertiary">
   <ion-buttons slot="start">
-    <ion-menu-button color="primary"></ion-menu-button>
+    <ion-back-button defaultHref="login"></ion-back-button>
   </ion-buttons>
 </ion-toolbar>
 
 <ion-content>
+  
   <div class="login">
+    
     <h1>Register</h1>
 
-    <form class="form">
+    <form [formGroup]="registerForm.getForm()" class="form">
       <ion-list lines="none">
         <ion-item>
           <ion-label color="secondary" position="stacked">Name</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" formControlName="name"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="registerForm.getForm().get('name').touched && registerForm.getForm().get('name').errors?.required">Name is mandatory!</ion-label>
+
         <ion-item>
           <ion-label color="secondary" position="stacked">Email</ion-label>
-          <ion-input type="email"></ion-input>
+          <ion-input type="email" formControlName="email"></ion-input>
         </ion-item>
+
+        <ion-label color="danger" *ngIf="registerForm.getForm().get('email').touched && registerForm.getForm().get('email').errors?.required">Email is mandatory!</ion-label>
+        <ion-label color="danger" *ngIf="registerForm.getForm().get('email').touched && registerForm.getForm().get('email').errors?.email">Email is invalid!</ion-label>
+
         <ion-item>
           <ion-label color="secondary" position="stacked">Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
+
+        <ion-label color="danger" *ngIf="registerForm.getForm().get('password').touched && registerForm.getForm().get('password').errors?.required">Password is mandatory!</ion-label>
+        <ion-label color="danger" *ngIf="registerForm.getForm().get('password').touched && registerForm.getForm().get('password').errors?.minlength">Minimum of 6 characters!</ion-label>
+
+
         <ion-item>
           <ion-label color="secondary" position="stacked">Confirm Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" formControlName="repeatPassword"></ion-input>
         </ion-item>
+
+        <ion-label color="danger" *ngIf="registerForm.getForm().get('repeatPassword').touched && registerForm.getForm().get('repeatPassword').errors?.instMatching"> Passwords are not identical!</ion-label>
+
+
       </ion-list>
-      <ion-button color="primary" expand="block" (click)="register()">Register</ion-button>
+      <ion-button color="primary" expand="block" [disabled]="!registerForm.getForm().valid" (click)="register()">Register</ion-button>
     </form>
   </div>
 </ion-content>

@@ -1,22 +1,35 @@
+<ion-toolbar color="tertiary">
+  <ion-buttons slot="start">
+    <ion-menu-button color="primary"></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+
 <ion-content>
   <div class="login">
     <h1>Login</h1>
 
-    <form class="form">
+    <form [formGroup]="form" class="form">
       <ion-list lines="none">
         <ion-item>
           <ion-label color="secondary" position="stacked">Email</ion-label>
-          <ion-input></ion-input>
+          <ion-input type="email" formControlName="email"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="form.get('email').touched && form.get('email').errors?.required">Email is mandatory!</ion-label>
+        <ion-label color="danger" *ngIf="form.get('email').touched && form.get('email').errors?.email">Email is invalid!</ion-label>
 
         <ion-item>
           <ion-label color="secondary" position="stacked">Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="form.get('password').touched && form.get('password').errors?.required">Password is mandatory!</ion-label>
       </ion-list>
-      <a routerLink="/homepage">
-        <ion-button color="primary" expand="block">Login</ion-button>
-      </a>
+      
+      <ion-button color="primary" fill="clear" expand="block" [disabled]="!form.get('email').valid">Forgot email or password?</ion-button>
+
+        <ion-button color="primary" expand="block" [disabled]="!form.valid" (click)="login()" >Login</ion-button>
+      
+        <ion-button color="primary" expand="block" (click)="register()">Register</ion-button>
+
     </form>
   </div>
 </ion-content>

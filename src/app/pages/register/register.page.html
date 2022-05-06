@@ -1,3 +1,9 @@
+<ion-toolbar color="tertiary">
+  <ion-buttons slot="start">
+    <ion-menu-button color="primary"></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+
 <ion-content>
   <div class="login">
     <h1>Register</h1>
@@ -6,11 +12,11 @@
       <ion-list lines="none">
         <ion-item>
           <ion-label color="secondary" position="stacked">Name</ion-label>
-          <ion-input></ion-input>
+          <ion-input type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label color="secondary" position="stacked">Email</ion-label>
-          <ion-input></ion-input>
+          <ion-input type="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label color="secondary" position="stacked">Password</ion-label>
@@ -21,7 +27,7 @@
           <ion-input type="password"></ion-input>
         </ion-item>
       </ion-list>
-      <ion-button color="primary" expand="block">Register</ion-button>
+      <ion-button color="primary" expand="block" (click)="register()">Register</ion-button>
     </form>
   </div>
 </ion-content>

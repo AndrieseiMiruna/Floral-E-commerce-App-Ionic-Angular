@@ -39,6 +39,7 @@ export class CartModalPage implements OnInit {
 
   async checkout() {
     // Perfom PayPal or Stripe checkout process
+    this.cartService.removeAllProducts();
 
     let alert = await this.alertCtrl.create({
       header: 'Thanks for your Order!',
@@ -48,5 +49,7 @@ export class CartModalPage implements OnInit {
     alert.present().then(() => {
       this.modalCtrl.dismiss();
     });
+
+    
   }
 }

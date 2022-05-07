@@ -83,4 +83,12 @@ export class CartService {
       }
     }
   }
-}
+
+  removeAllProducts() {
+    for (const [index, p] of this.cart.entries()) {
+        this.cartItemCount.next(this.cartItemCount.value - p.amount);
+        this.cart = [];
+      }
+    }
+  }
+

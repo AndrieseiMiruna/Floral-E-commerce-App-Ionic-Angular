@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    this.router.navigate(['homepage']);
+    this.router.navigate(['home']);
   }
 
   register(){
